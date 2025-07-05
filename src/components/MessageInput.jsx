@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { useChatStore } from "../store/useChatStore.js"
-import { Send, Image, X } from "lucide-react"
+import { SendHorizontal, Image, X } from "lucide-react"
 import toast from "react-hot-toast"
 
 
@@ -96,10 +96,10 @@ const MessageInput = () => {
         </div>
         <button
           type="submit"
-          className="btn btn-sm btn-circle"
+          className="btn btn-circle"
           disabled={!text.trim() && !imagePreview}
         >
-          <Send size={22} />
+          <SendHorizontal size={20} />
         </button>
       </form>
     </div>
