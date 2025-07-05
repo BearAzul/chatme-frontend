@@ -59,7 +59,7 @@ const ProfilePage = () => {
                 <Mail className="w-4 h-4" />
                 Alamat Email
               </div>
-              <p className="px-4 py-2.5 bg-base-200 rounded-lg border border-zinc-700 overflow-hidden">{authUser?.email}</p>
+              <p className="px-4 py-2.5 bg-base-200 rounded-lg border border-zinc-700 overflow-x-scroll sm:overflow-hidden">{authUser?.email}</p>
             </div>
           </div>
 
