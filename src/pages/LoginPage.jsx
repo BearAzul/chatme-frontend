@@ -18,7 +18,6 @@ const LoginPage = () => {
     if (!formData.email.trim()) return toast.error("Email harus diisi")
     if (!/\S+@\S+\.\S+/.test(formData.email)) return toast.error("Gunakan format email dengan benar!");
     if (!formData.password) return toast.error("Password harus diisi")
-    if (formData.password.length < 6) return toast.error("Password paling tidak memiliki 6 karakter")
 
     return true
   }
