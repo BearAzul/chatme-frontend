@@ -34,12 +34,12 @@ export const useChatStore = create((set, get) => ({
     }
   },
 
-  sendMessage: async (data) => {
+  sendMessage: async (messageData) => {
     const { selectedUser, messages } = get();
     try {
       const res = await axiosInstanace.post(
         `/messages/send/${selectedUser._id}`,
-        data
+        messageData
       );
       set({ messages: [...messages, res.data] });
     } catch (error) {
@@ -57,7 +57,7 @@ export const useChatStore = create((set, get) => ({
       const isMessageSentFromSelectedUser =
         newMessage.senderId === selectedUser._id;
       if (!isMessageSentFromSelectedUser) return;
-
+      
       set({
         messages: [...get().messages, newMessage],
       });
