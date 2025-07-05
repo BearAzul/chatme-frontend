@@ -6,7 +6,7 @@ import { useAuthStore } from "./useAuthStore.js";
 export const useChatStore = create((set, get) => ({
   messages: [],
   users: [],
-  selectedUser: [],
+  selectedUser: null,
   isUsersLoading: false,
   isMessagesLoading: false,
 
