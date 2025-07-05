@@ -16,7 +16,6 @@ const SidebarLoading = () => {
         </div>
       </div>
 
-      {/* Skeleton Contacts */}
       <div className="overflow-y-auto w-full py-3">
         {usersLoad.map((_, i) => (
           <div key={i} className="w-full p-3 flex items-center gap-3">

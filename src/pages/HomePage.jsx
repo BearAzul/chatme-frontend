@@ -5,7 +5,7 @@ import { useChatStore } from "../store/useChatStore.js"
 
 
 const HomePage = () => {
-  const { selectedUser } = useChatStore
+  const { selectedUser } = useChatStore()
   return (
     <div className="min-h-screen bg-base-200">
       <div className="flex items-center justify-center pt-6 px-4">
