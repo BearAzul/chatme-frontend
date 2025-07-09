@@ -20,12 +20,12 @@ export default defineConfig({
         start_url: "/",
         icons: [
           {
-            src: "192_chatme_logo.png",
+            src: "192_chatme.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "512_chatme_logo.png",
+            src: "512_chatme.png",
             sizes: "512x512",
             type: "image/png",
           },
