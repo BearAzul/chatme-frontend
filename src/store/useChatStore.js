@@ -6,6 +6,7 @@ import { useAuthStore } from "./useAuthStore.js";
 export const useChatStore = create((set, get) => ({
   messages: [],
   users: [],
+  notifications: [],
   selectedUser: null,
   isUsersLoading: false,
   isMessagesLoading: false,
@@ -27,6 +28,7 @@ export const useChatStore = create((set, get) => ({
     try {
       const res = await axiosInstanace.get(`/messages/${userId}`);
       set({ messages: res.data });
+      get().removeNotification(userId);
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
@@ -48,19 +50,20 @@ export const useChatStore = create((set, get) => ({
   },
 
   subscribeToMessages: () => {
-    const { selectedUser } = get();
-    if (!selectedUser) return;
-
     const socket = useAuthStore.getState().socket;
+    if (!socket) return;
+
+    socket.off("newMessage");
 
     socket.on("newMessage", (newMessage) => {
-      const isMessageSentFromSelectedUser =
-        newMessage.senderId === selectedUser._id;
-      if (!isMessageSentFromSelectedUser) return;
-      
-      set({
-        messages: [...get().messages, newMessage],
-      });
+      const { selectedUser, messages } = get();
+
+      if (selectedUser?._id === newMessage.senderId) {
+        set({ messages: [...messages, newMessage] });
+      } else {
+        get().addNotification(newMessage.senderId);
+        toast.success(`Pesan baru dari pengguna lain!`);
+      }
     });
   },
 
@@ -69,5 +72,23 @@ export const useChatStore = create((set, get) => ({
     socket.off("newMessage");
   },
 
-  setSelectedUser: (selectedUser) => set({ selectedUser }),
+  setSelectedUser: (selectedUser) => {
+    set({ selectedUser });
+    get().getMessages(selectedUser._id);
+  },
+
+  addNotification: (senderId) => {
+    set((state) => {
+      if (!state.notifications.includes(senderId)) {
+        return { notifications: [...state.notifications, senderId] };
+      }
+      return {};
+    });
+  },
+
+  removeNotification: (senderId) => {
+    set((state) => ({
+      notifications: state.notifications.filter((id) => id !== senderId),
+    }));
+  },
 }));

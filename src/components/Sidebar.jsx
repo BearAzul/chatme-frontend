@@ -7,7 +7,7 @@ import { useAuthStore } from "../store/useAuthStore.js"
 
 
 const Sidebar = () => {
-  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useChatStore()
+  const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading, notifications } = useChatStore()
 
   const { onlineUsers } = useAuthStore()
   const [showOnlineOnly, setShowOnlineOnly] = useState(false);
@@ -46,7 +46,7 @@ const Sidebar = () => {
         {filteredUsers.map((user) => (
           <button
             key={user._id}
-            className={`
+            className={`relative
               w-full p-3 flex items-center gap-3
               hover:bg-base-300 transition-colors
               ${selectedUser?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}
@@ -73,6 +73,14 @@ const Sidebar = () => {
                 {onlineUsers.includes(user._id) ? "Online" : "Offline"}
               </div>
             </div>
+
+            {notifications.includes(user._id) && (
+              <span
+                className="absolute top-1/2 right-4 -translate-y-1/2 w-3 h-3 bg-red-500 
+                rounded-full animate-pulse"
+                aria-label="Pesan baru"
+              />
+            )}
           </button>
         ))}
 
