@@ -57,7 +57,7 @@ const LoginPage = () => {
 
             <div className="form-control">
               <label htmlFor="password" className="label">
-                <span className="label-text font-medium">Password</span>
+                <span className="label-text font-medium">Password:</span>
               </label>
               <div className="relative mt-1">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
