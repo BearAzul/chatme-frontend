@@ -1,5 +1,4 @@
 import { useAuthStore } from "../store/useAuthStore.js"
-import blankUser from "../assets/img/blank_user.webp"
 import { Camera, User, Mail, ShieldCheck } from "lucide-react"
 import { useState } from "react"
 
@@ -33,7 +32,7 @@ const ProfilePage = () => {
 
           <div className="flex flex-col items-center gap-4">
             <div className="relative">
-              <img src={selectedImage || authUser.picture || blankUser} alt="profile image" className="size-32 rounded-full object-cover border-4" />
+              <img src={selectedImage || authUser.picture || `https://ui-avatars.com/api/?name=${authUser.fullName}&background=random`} alt="profile image" className="size-32 rounded-full object-cover border-4" />
               <label htmlFor="picture"
                 className={`absolute bottom-0 right-0 bg-base-content hover:scale-105 p-2 rounded-full cursor-pointer transition-all duration-200 ${isUpdatingProfile ? "animate-pulse pointer-events-none" : ""}`}
               >

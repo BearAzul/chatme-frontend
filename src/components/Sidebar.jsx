@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useChatStore } from "../store/useChatStore.js"
 import SidebarLoading from "./SidebarLoading.jsx"
-import blankUser from "../assets/img/blank_user.webp"
 import { Users } from "lucide-react"
 import { useAuthStore } from "../store/useAuthStore.js"
 
@@ -55,8 +54,8 @@ const Sidebar = () => {
           >
             <div className="relative w-max md:mx-auto lg:mx-0">
               <img
-                src={user.picture || blankUser}
-                alt={user.name}
+                src={user.picture || `https://ui-avatars.com/api/?name=${user.fullName}&background=random`}
+                alt={user.fullName}
                 className="size-12 object-cover rounded-full"
               />
               {onlineUsers.includes(user._id) && (

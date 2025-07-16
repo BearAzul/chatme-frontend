@@ -1,5 +1,4 @@
 import { X } from "lucide-react"
-import blankUser from "../assets/img/blank_user.webp"
 import { useChatStore } from "../store/useChatStore.js";
 import { useAuthStore } from "../store/useAuthStore.js";
 
@@ -15,7 +14,7 @@ const Header = () => {
 
           <div className="avatar">
             <div className="size-10 rounded-full relative">
-              <img src={selectedUser.picture || blankUser} alt={selectedUser.fullName} />
+              <img src={selectedUser.picture || `https://ui-avatars.com/api/?name=${selectedUser.fullName}&background=random`} alt={selectedUser.fullName} />
             </div>
           </div>
 

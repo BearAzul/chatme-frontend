@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react"
-import blankUser from "../assets/img/blank_user.webp"
 import { useAuthStore } from "../store/useAuthStore.js"
 import { useChatStore } from "../store/useChatStore.js"
 import Header from "./Header.jsx"
@@ -53,8 +52,8 @@ const ChatContainer = () => {
                 <img
                   src={
                     message.senderId === authUser._id
-                      ? authUser.picture || blankUser
-                      : selectedUser.picture || blankUser
+                      ? authUser.picture || `https://ui-avatars.com/api/?name=${authUser.fullName}&background=random`
+                      : selectedUser.picture || `https://ui-avatars.com/api/?name=${selectedUser.fullName}&background=random`
                   }
                   alt="profile image"
                 />
