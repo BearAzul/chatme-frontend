@@ -5,6 +5,7 @@ import Header from "./Header.jsx"
 import MessageInput from "./MessageInput.jsx"
 import MessageLoading from "./MessageLoading.jsx"
 import { formatMessageTime } from "../lib/utils.js"
+import { FileText } from "lucide-react"
 
 const ChatContainer = () => {
   const { messages, getMessages, isMessagesLoading, selectedUser, subscribeToMessages, unsubscribeFromMessages } = useChatStore();
@@ -52,8 +53,10 @@ const ChatContainer = () => {
                 <img
                   src={
                     message.senderId === authUser._id
-                      ? authUser.picture || `https://ui-avatars.com/api/?name=${authUser.fullName}&background=random`
-                      : selectedUser.picture || `https://ui-avatars.com/api/?name=${selectedUser.fullName}&background=random`
+                      ? authUser.picture ||
+                        `https://ui-avatars.com/api/?name=${authUser.fullName}&background=random`
+                      : selectedUser.picture ||
+                        `https://ui-avatars.com/api/?name=${selectedUser.fullName}&background=random`
                   }
                   alt="profile image"
                 />
@@ -72,6 +75,20 @@ const ChatContainer = () => {
                   className="sm:max-w-[200px] rounded-md mb-2"
                 />
               )}
+
+              {message.pdf && (
+                <a
+                  href={message.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-base-300 hover:bg-base-200 text-base-content p-3 rounded-md mb-2 transition-colors"
+                >
+                  <FileText className="text-blue-500" size={24} />
+                  <span className="text-sm font-medium underline">
+                    Buka Dokumen PDF
+                  </span>
+                </a>
+              )}
               {message.text && <p>{message.text}</p>}
             </div>
           </div>
@@ -80,7 +97,7 @@ const ChatContainer = () => {
 
       <MessageInput />
     </div>
-  )
+  );
 }
 
 export default ChatContainer
